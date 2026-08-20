@@ -9,3 +9,9 @@ function getComputerChoice() {
         return "scissors";
     }
 }
+
+function getHumanChoice() {
+    const humanChoice = prompt("Your choice:");
+
+    return humanChoice.toLowerCase();
+}
