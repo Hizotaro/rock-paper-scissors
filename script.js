@@ -2,19 +2,43 @@ let humanScore = 0;
 let computerScore = 0;
 
 function getComputerChoice() {
-    const randomIndex = Math.floor(Math.random() * 3);
+    const randomChoiceIndex = Math.floor(Math.random() * 3);
 
-    if (randomIndex === 0) {
+    if (randomChoiceIndex === 0) {
         return "rock";
-    } else if (randomIndex === 1) {
+    } else if (randomChoiceIndex === 1) {
         return "paper";
     } else {
         return "scissors";
     }
 }
 
-function getHumanChoice() {
-    const humanChoice = prompt("Your choice:");
+const computerChoice = getComputerChoice();
 
-    return humanChoice.toLowerCase();
+function getHumanChoice() {
+    const rawHumanChoice = prompt("Your choice:");
+
+    return rawHumanChoice.toLowerCase();
 }
+
+const humanChoice = getHumanChoice();
+
+function playRound(humanChoice, computerChoice) {
+    const normalizedHumanChoice = humanChoice.toLowerCase();
+
+    if (normalizedHumanChoice === computerChoice) {
+        return "Tie";
+    } else if (
+        (normalizedHumanChoice === "rock" && computerChoice === "scissors") ||
+        (normalizedHumanChoice === "paper" && computerChoice === "rock") ||
+        (normalizedHumanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        humanScore++;
+        return "Human won";
+    } else {
+        computerScore++;
+        return "Computer won";
+    }
+}
+
+console.log(playRound(humanChoice, computerChoice));
