@@ -13,32 +13,46 @@ function getComputerChoice() {
     }
 }
 
-const computerChoice = getComputerChoice();
-
 function getHumanChoice() {
     const rawHumanChoice = prompt("Your choice:");
 
-    return rawHumanChoice.toLowerCase();
+    return rawHumanChoice;
 }
-
-const humanChoice = getHumanChoice();
 
 function playRound(humanChoice, computerChoice) {
     const normalizedHumanChoice = humanChoice.toLowerCase();
 
     if (normalizedHumanChoice === computerChoice) {
-        return "Tie";
+        return "The round was a tie.";
     } else if (
         (normalizedHumanChoice === "rock" && computerChoice === "scissors") ||
         (normalizedHumanChoice === "paper" && computerChoice === "rock") ||
         (normalizedHumanChoice === "scissors" && computerChoice === "paper")
     ) {
         humanScore++;
-        return "Human won";
+        return "You won the round.";
     } else {
         computerScore++;
-        return "Computer won";
+        return "Computer won the round.";
     }
 }
 
-console.log(playRound(humanChoice, computerChoice));
+function playGame() {
+    for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+
+        const roundResult = playRound(humanChoice, computerChoice);
+        console.log(roundResult);
+    }
+
+    if (humanScore === computerScore) {
+        return "The game was a tie.";
+    } else if (humanScore > computerScore) {
+        return "You won the game!";
+    } else {
+        return "Computer won the game.";
+    }
+}
+
+console.log(playGame());
