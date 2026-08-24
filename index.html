@@ -8,6 +8,40 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <header>
+      <div class="header">
+        <h1>Rock Paper Scissors</h1>
+      </div>
+    </header>
+    <main>
+      <div class="instruction">
+        <p>Select your choice to start the game</p>
+      </div>
+      <div class="scoreboard">
+        <div class="human">
+          <h2>Your Score</h2>
+          <p id="human-score">0</p>
+        </div>
+        <div class="computer">
+          <h2>Computer Score</h2>
+          <p id="computer-score">0</p>
+        </div>
+      </div>
+      <section class="decision" aria-labelledby="decision-heading">
+        <h2 id="decision-heading">Choose your move</h2>
+        <button type="button" data-choice="rock">Rock</button>
+        <button type="button" data-choice="paper">Paper</button>
+        <button type="button" data-choice="scissors">Scissors</button>
+      </section>
+      <section class="round-result" aria-labelledby="round-result-heading">
+        <h2 id="round-result-heading">Round Result</h2>
+        <p id="round-result" aria-live="polite">No round played yet.</p>
+      </section>
+      <section class="game-status" aria-labelledby="game-status-heading">
+        <h2 id="game-status-heading">Game Status</h2>
+        <p id="game-status" aria-live="polite">Choose a move to begin.</p>
+      </section>
+    </main>
     <script src="./script.js"></script>
   </body>
 </html>

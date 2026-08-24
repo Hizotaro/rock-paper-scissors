@@ -54,5 +54,3 @@ function playGame() {
         return "Computer won the game.";
     }
 }
-
-console.log(playGame());
