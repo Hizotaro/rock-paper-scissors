@@ -13,12 +13,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    const rawHumanChoice = prompt("Your choice:");
-
-    return rawHumanChoice;
-}
-
 function playRound(humanChoice, computerChoice) {
     const normalizedHumanChoice = humanChoice.toLowerCase();
 
@@ -37,20 +31,23 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-function playGame() {
-    for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
+const choiceButtons = document.querySelectorAll("[data-choice]");
+const humanScoreDisplay = document.querySelector("#human-score");
+const computerScoreDisplay = document.querySelector("#computer-score");
+const roundResultDisplay = document.querySelector("#round-result");
+const gameStatusDisplay = document.querySelector("#game-status");
 
-        const roundResult = playRound(humanChoice, computerChoice);
-        console.log(roundResult);
-    }
+function handleChoiceClick(event) {
+    const humanChoice = event.currentTarget.dataset.choice;
+    const computerChoice = getComputerChoice();
+    const roundResult = playRound(humanChoice, computerChoice);
 
-    if (humanScore === computerScore) {
-        return "The game was a tie.";
-    } else if (humanScore > computerScore) {
-        return "You won the game!";
-    } else {
-        return "Computer won the game.";
-    }
+    roundResultDisplay.textContent = roundResult;
+    humanScoreDisplay.textContent = humanScore;
+    computerScoreDisplay.textContent = computerScore;
+    gameStatusDisplay.textContent = "Choose your next move.";
 }
+
+choiceButtons.forEach((button) => {
+    button.addEventListener("click", handleChoiceClick);
+});
