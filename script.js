@@ -48,20 +48,23 @@ function handleChoiceClick(event) {
     humanScoreDisplay.textContent = humanScore;
     computerScoreDisplay.textContent = computerScore;
 
-    if (humanScore === winningScore || computerScore === winningScore) {
-        if (humanScore === winningScore) {
-            gameStatusDisplay.textContent = "You won the game!";
-        } else {
-            gameStatusDisplay.textContent = "Computer won the game.";
-        }
+    const isGameOver =
+        humanScore === winningScore || computerScore === winningScore;
 
-        choiceButtons.forEach((button) => {
-            button.disabled = true;
-        });
-        newGameButton.disabled = false;
-    } else {
+    if (!isGameOver) {
         gameStatusDisplay.textContent = "Choose your next move.";
+        return;
     }
+
+    gameStatusDisplay.textContent =
+        humanScore === winningScore
+            ? "You won the game!"
+            : "Computer won the game.";
+
+    choiceButtons.forEach((button) => {
+        button.disabled = true;
+    });
+    newGameButton.disabled = false;
 }
 
 choiceButtons.forEach((button) => {
